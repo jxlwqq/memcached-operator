@@ -334,3 +334,50 @@ NAME                                                              READY   STATUS
 docker-io-jxlwqq-memcached-operator-bundle-v0-0-1                 1/1     Running     0          84s
 memcached-operator-controller-manager-666cfff6c-fxhrk             2/2     Running     0          41s
 ```
+
+
+
+#### 创建自定义资源
+
+编辑 config/samples/cache_v1alpha1_memcached.yaml 上的 Memcached CR 清单示例，使其包含
+以下规格：
+
+```yaml
+apiVersion: cache.jxlwqq.github.io/v1alpha1
+kind: Memcached
+metadata:
+  name: memcached-sample
+spec:
+  size: 2
+```
+
+创建 CR：
+```shell
+kubectl apply -f config/samples/cache_v1alpha1_memcached.yaml
+```
+
+查看 Pod：
+```shell
+NAME                                                              READY   STATUS      RESTARTS   AGE
+7bb60cfcec4a426a75d6ca01153f5e6d3061e175d035791255372bdd7ebrvmd   0/1     Completed   0          4m14s
+docker-io-jxlwqq-memcached-operator-bundle-v0-0-1                 1/1     Running     0          4m31s
+memcached-operator-controller-manager-666cfff6c-fxhrk             2/2     Running     0          3m48s
+memcached-sample-6c765df685-d8ppn                                 1/1     Running     0          29s
+memcached-sample-6c765df685-dtw9l                                 1/1     Running     0          29s
+```
+
+更新 CR：
+```shell
+kubectl patch memcached memcached-sample -p '{"spec":{"size": 3}}' --type=merge
+```
+
+查看 Pod：
+```shell
+NAME                                                              READY   STATUS      RESTARTS   AGE
+7bb60cfcec4a426a75d6ca01153f5e6d3061e175d035791255372bdd7ebrvmd   0/1     Completed   0          6m52s
+docker-io-jxlwqq-memcached-operator-bundle-v0-0-1                 1/1     Running     0          7m9s
+memcached-operator-controller-manager-666cfff6c-fxhrk             2/2     Running     0          6m26s
+memcached-sample-6c765df685-d8ppn                                 1/1     Running     0          3m7s
+memcached-sample-6c765df685-dtw9l                                 1/1     Running     0          3m7s
+memcached-sample-6c765df685-n7ctq                                 1/1     Running     0          6s
+```
