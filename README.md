@@ -315,3 +315,22 @@ make bundle-push
 ```
 
 成功后访问：https://hub.docker.com/r/jxlwqq/memcached-operator-bundle
+
+使用 Operator Lifecycle Manager 部署 Operator:
+
+```shell
+# 切换至本地集群
+kubectl config use-context docker-desktop
+# 安装 olm
+operator-sdk olm install
+# 使用 Operator SDK 中的 OLM 集成在集群中运行 Operator
+operator-sdk run bundle docker.io/jxlwqq/memcached-operator-bundle:v0.0.1
+```
+
+查看 Pod：
+```shell
+NAME                                                              READY   STATUS      RESTARTS   AGE
+7bb60cfcec4a426a75d6ca01153f5e6d3061e175d035791255372bdd7ebrvmd   0/1     Completed   0          67s
+docker-io-jxlwqq-memcached-operator-bundle-v0-0-1                 1/1     Running     0          84s
+memcached-operator-controller-manager-666cfff6c-fxhrk             2/2     Running     0          41s
+```
