@@ -29,14 +29,14 @@ BUNDLE_METADATA_OPTS ?= $(BUNDLE_CHANNELS) $(BUNDLE_DEFAULT_CHANNEL)
 #
 # For example, running 'make bundle-build bundle-push catalog-build catalog-push' will build and push both
 # jxlwqq.github.io/memcached-operator-bundle:$VERSION and jxlwqq.github.io/memcached-operator-catalog:$VERSION.
-IMAGE_TAG_BASE ?= jxlwqq.github.io/memcached-operator
+IMAGE_TAG_BASE ?= docker.io/jxlwqq/memcached-operator
 
 # BUNDLE_IMG defines the image:tag used for the bundle.
 # You can use it as an arg. (E.g make bundle-build BUNDLE_IMG=<some-registry>/<project-name-bundle>:<tag>)
 BUNDLE_IMG ?= $(IMAGE_TAG_BASE)-bundle:v$(VERSION)
 
 # Image URL to use all building/pushing image targets
-IMG ?= controller:latest
+IMG ?= $(IMAGE_TAG_BASE):latest
 # Produce CRDs that work back to Kubernetes 1.11 (no version conversion)
 CRD_OPTIONS ?= "crd:trivialVersions=true,preserveUnknownFields=false"
 # ENVTEST_K8S_VERSION refers to the version of kubebuilder assets to be downloaded by envtest binary.
