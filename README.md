@@ -39,3 +39,19 @@ operator-sdk create api \
 --kind=Memcached
 ```
 
+定义 Memcached 自定义资源（CR）的 API。
+
+修改 api/v1alpha1/memcached_types.go 中的 Go 类型定义，使其具有以下 spec 和 status
+
+```go
+type MemcachedSpec struct {
+	// +kubebuilder:validation:Minimum=0
+	// Size is the size of the memcached deployment
+	Size int32 `json:"size"`
+}
+
+type MemcachedStatus struct {
+    // Nodes are the names of the memcached pods
+	Nodes []string `json:"nodes"`
+}
+```
