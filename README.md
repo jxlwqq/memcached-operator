@@ -381,3 +381,10 @@ memcached-sample-6c765df685-d8ppn                                 1/1     Runnin
 memcached-sample-6c765df685-dtw9l                                 1/1     Running     0          3m7s
 memcached-sample-6c765df685-n7ctq                                 1/1     Running     0          6s
 ```
+
+#### 做好清理
+
+```shell
+operator-sdk cleanup memcached-operator
+operator-sdk olm uninstall
+```
