@@ -55,3 +55,8 @@ type MemcachedStatus struct {
 	Nodes []string `json:"nodes"`
 }
 ```
+
+为资源类型更新生成的代码：
+```shell
+make generate
+```
