@@ -3,14 +3,21 @@
 Operator SDK 中的 Go 编程语言支持可以利用 Operator SDK 中的 Go 编程语言支持，为 Memcached 构
 建基于 Go 的 Operator 示例、分布式键值存储并管理其生命周期。
 
-#### 前置条件
+### 前置条件
 
 * 安装 Docker Desktop，并启动内置的 Kubernetes 集群
 * 注册一个 [hub.docker.com](https://hub.docker.com/) 账户，需要将本地构建好的镜像推送至公开仓库中
 * 安装 operator SDK CLI: `brew install operator-sdk`
 * 安装 Go: `brew install go`
 
-#### 创建项目
+本示例推荐的依赖版本：
+
+* Docker Desktop: >= 4.0.0
+* Kubernetes: >= 1.21.4
+* Operator-SDK: >= 1.11.0
+* Go: >= 1.17
+
+### 创建项目
 
 使用 Operator SDK CLI 创建名为 memcached-operator 的项目。
 ```shell
@@ -24,7 +31,7 @@ operator-sdk init \
 --skip-go-version-check
 ```
 
-#### 创建 API 和控制器
+### 创建 API 和控制器
 
 使用 Operator SDK CLI 创建自定义资源定义（CRD）API 和控制器。
 
@@ -66,7 +73,7 @@ make generate
 make manifests
 ```
 
-#### 实现控制器
+### 实现控制器
 
 在本例中，将生成的控制器文件 controllers/memcached_controller.go 替换为以下示例实现：
 
@@ -275,7 +282,7 @@ func (r *MemcachedReconciler) SetupWithManager(mgr ctrl.Manager) error {
 make manifests
 ```
 
-#### 运行 Operator
+### 运行 Operator
 
 捆绑 Operator，并使用 Operator Lifecycle Manager（OLM）在集群中部署。
 
@@ -337,7 +344,7 @@ memcached-operator-controller-manager-666cfff6c-fxhrk             2/2     Runnin
 
 
 
-#### 创建自定义资源
+### 创建自定义资源
 
 编辑 config/samples/cache_v1alpha1_memcached.yaml 上的 Memcached CR 清单示例，使其包含
 以下规格：
@@ -382,7 +389,7 @@ memcached-sample-6c765df685-dtw9l                                 1/1     Runnin
 memcached-sample-6c765df685-n7ctq                                 1/1     Running     0          6s
 ```
 
-#### 做好清理
+### 做好清理
 
 ```shell
 operator-sdk cleanup memcached-operator
