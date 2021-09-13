@@ -395,3 +395,7 @@ memcached-sample-6c765df685-n7ctq                                 1/1     Runnin
 operator-sdk cleanup memcached-operator
 operator-sdk olm uninstall
 ```
+
+### 更多
+
+更多经典示例请参考：https://github.com/jxlwqq/kubernetes-examples
