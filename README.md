@@ -17,6 +17,14 @@ Operator SDK 中的 Go 编程语言支持可以利用 Operator SDK 中的 Go 编
 * Operator-SDK: >= 1.11.0
 * Go: >= 1.17
 
+
+> jxlwqq 为笔者的 ID，命令行和代码中涉及的个人 ID，均需要替换为读者自己的，包括
+> * `--domain=`
+> * `--repo=`
+> * `//+kubebuilder:rbac:groups=`
+> * `IMAGE_TAG_BASE ?=`
+
+
 ### 创建项目
 
 使用 Operator SDK CLI 创建名为 memcached-operator 的项目。
